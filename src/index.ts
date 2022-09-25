@@ -1,7 +1,9 @@
 import {Telegraf, Context} from "telegraf";
-require('dotenv').config();
+import * as dotenv from 'dotenv';
 
-const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
+dotenv.config();
+
+const bot = new Telegraf(`${process.env.TELEGRAM_BOT_TOKEN}`);
 bot.start((ctx) => ctx.reply('Yes'));
 bot.help((ctx) => ctx.reply('Send me a sticker'));
 bot.on('sticker', (ctx) => ctx.reply('👍'));
