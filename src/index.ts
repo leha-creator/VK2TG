@@ -13,8 +13,8 @@ const sequelize = new Sequelize(`${process.env.DB_NAME}`, `${process.env.DB_USER
 try {
     const dbConnection = async () => {
         await sequelize.authenticate();
+        console.log('Соединение с БД было успешно установлено')
     }
-    console.log('Соединение с БД было успешно установлено')
 
 } catch (e) {
     console.log('Невозможно выполнить подключение к БД: ', e)
