@@ -1,6 +1,8 @@
-import {Telegraf, Context} from "telegraf";
+import {Telegraf, Markup} from 'telegraf';
 import {Sequelize} from "sequelize";
+
 import * as dotenv from 'dotenv';
+import * as path from 'node:path';
 
 dotenv.config();
 
@@ -21,8 +23,8 @@ try {
 }
 
 const bot = new Telegraf(`${process.env.TELEGRAM_BOT_TOKEN}`);
-bot.start((ctx) => ctx.reply('Yes'));
-bot.help((ctx) => ctx.reply('Send me a sticker'));
+
+bot.use(require('./composers/start.composer'))
 bot.on('sticker', (ctx) => ctx.reply('👍'));
 bot.hears('hi', (ctx) => ctx.reply('Hey there'));
 bot.launch();
